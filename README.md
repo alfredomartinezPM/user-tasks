@@ -49,6 +49,10 @@ Puedes probar los endpoints con [Postman](https://www.postman.com/) o [Hoppscotc
 
 ---
 
+## 💻 Abre en codespaces
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&repo=alfredomartinezPM/user-tasks&ref=main)
+
+
 ## 📚 Recursos útiles
 
 - [Documentación oficial de NestJS](https://docs.nestjs.com/)
