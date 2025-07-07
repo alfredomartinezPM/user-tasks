@@ -9,15 +9,26 @@ No necesitas tener experiencia previa con NestJS. Puedes revisar su documentaci�
 
 ## 📝 Actividades a realizar
 
-1. **Agrega el campo `dueDate` (fecha de vencimiento) al modelo de tareas**:
-   - Modifica la entidad `Task`.
-   - Asegúrate de que se guarde correctamente al crear una tarea.
+En este sistema ya puedes crear usuarios y tareas.
+Queremos mejorar la funcionalidad para que los usuarios puedan organizar mejor sus tareas.
 
-2. **Crea un endpoint para obtener las tareas pendientes** de un usuario específico, ordenadas por `dueDate`.
+Implementa lo siguiente:
 
-3. **Valida que el campo `title` no esté vacío** al crear una tarea, usando decoradores de validación.
+1. **Agrega un campo `dueDate` (opcional) a las tareas**:
+   - El campo debe almacenarse como fecha válida (`Date`).
+   - Si no se proporciona, debe guardarse como `null`.
 
-4. (Opcional, si te queda tiempo): crea un endpoint para marcar una tarea como completada.
+2. **Crea un endpoint para obtener las tareas pendientes de un usuario**, ordenadas por:
+   - Tareas con `dueDate` más próxima primero.
+   - Luego, tareas sin `dueDate`.
+
+3. **Evita crear tareas duplicadas por título para el mismo usuario**:
+   - No debe permitirse que un usuario tenga más de una tarea con el mismo título.
+   - Esta validación debe aplicarse al crear una nueva tarea.
+
+4. *(Opcional, si te queda tiempo)* Agrega un endpoint que permita consultar cuántas tareas pendientes tiene un usuario:
+   - `GET /users/:id/pending-count` → `{ "count": 3 }`
+
 
 ---
 

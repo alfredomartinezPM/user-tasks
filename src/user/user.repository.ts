@@ -16,6 +16,10 @@ export class UserRepository extends Repository<User> {
     return this.findOneBy({ name });
   }
 
+  async findAll(): Promise<User[]> {
+    return this.find();
+  }
+
   async createIfNotExists(name: string): Promise<User> {
     let user = await this.findByName(name);
     if (!user) {
