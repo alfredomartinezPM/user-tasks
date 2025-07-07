@@ -1,6 +1,6 @@
 {
   "name": "NestJS Task Test",
-  "image": "mcr.microsoft.com/devcontainers/node:22",
+  "image": "node:22",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
