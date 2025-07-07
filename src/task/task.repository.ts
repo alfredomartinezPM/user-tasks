@@ -8,16 +8,13 @@ export class TaskRepository extends Repository<Task> {
     super(Task, dataSource.createEntityManager());
   }
 
-  findPendingTasksByUser(userId: number) {
-    return this.find({
-      where: {
-        user: { id: userId },
-        completed: false,
-      },
-      order: {
-        dueDate: 'ASC',
-      },
-    });
+  async createTask(title: string, userId: number): Promise<Task> {
+    const task = this.create({ title, user: { id: userId } });
+    return this.save(task);
+  }
+
+  async findAllTasks(): Promise<Task[]> {
+    return this.find({ relations: ['user'] });
   }
 
   async markAsCompleted(taskId: number) {

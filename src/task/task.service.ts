@@ -1,26 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from './entities/task.entity';
-import { Repository } from 'typeorm';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { User } from '../user/entities/user.entity';
+import { TaskRepository } from './task.repository';
+import { UserRepository } from '../user/user.repository';
 
 @Injectable()
 export class TaskService {
   constructor(
-    @InjectRepository(Task)
-    private taskRepo: Repository<Task>,
-    @InjectRepository(User)
-    private userRepo: Repository<User>,
+    private taskRepository: TaskRepository,
+    private userRepository: UserRepository,
   ) {}
 
   async create(dto: CreateTaskDto) {
-    const user = await this.userRepo.findOneBy({ id: dto.userId });
-    const task = this.taskRepo.create({ title: dto.title, user });
-    return this.taskRepo.save(task);
+    const user = await this.userRepository.findById(dto.userId);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    const task = this.taskRepository.createTask(dto.title, user.id);
+    return task;
   }
 
   findAll() {
-    return this.taskRepo.find();
+    return this.taskRepository.findAllTasks();
   }
 }
